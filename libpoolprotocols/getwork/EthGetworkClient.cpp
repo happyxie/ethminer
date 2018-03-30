@@ -68,7 +68,7 @@ void EthGetworkClient::workLoop()
 			if (m_solutionToSubmit.nonce) {
 				try
 				{
-					bool accepted = p_client->eth_submitWork("0x" + toHex(m_solutionToSubmit.nonce), "0x" + toString(m_solutionToSubmit.work.header), "0x" + toString(m_solutionToSubmit.mixHash));
+					bool accepted = p_client->mc_submitWork("0x" + toHex(m_solutionToSubmit.nonce), "0x" + toString(m_solutionToSubmit.work.header), "0x" + toString(m_solutionToSubmit.mixHash));
 					if (accepted) {
 						if (m_onSolutionAccepted) {
 							m_onSolutionAccepted(false);
@@ -92,7 +92,7 @@ void EthGetworkClient::workLoop()
 			// Get Work
 			try
 			{
-				Json::Value v = p_client->eth_getWork();
+				Json::Value v = p_client->mc_getWork();
 				WorkPackage newWorkPackage;
 				newWorkPackage.header = h256(v[0].asString());
 				newWorkPackage.seed = h256(v[1].asString());
@@ -126,7 +126,7 @@ void EthGetworkClient::workLoop()
 			if (!m_currentHashrateToSubmit.empty()) {
 				try
 				{
-					p_client->eth_submitHashrate(m_currentHashrateToSubmit, "0x" + m_client_id.hex());
+					p_client->mc_submitHashrate(m_currentHashrateToSubmit, "0x" + m_client_id.hex());
 				}
 				catch (jsonrpc::JsonRpcException)
 				{

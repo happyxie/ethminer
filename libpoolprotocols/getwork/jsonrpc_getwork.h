@@ -14,54 +14,54 @@ class JsonrpcGetwork
 			this->client = new jsonrpc::Client(*conn);
 		}
 
-        Json::Value eth_getWork() throw (jsonrpc::JsonRpcException)
+        Json::Value mc_getWork() throw (jsonrpc::JsonRpcException)
         {
             Json::Value p;
             p = Json::nullValue;
-            Json::Value result = this->client->CallMethod("eth_getWork",p);
+            Json::Value result = this->client->CallMethod("mc_getWork",p);
             if (result.isArray())
                 return result;
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
-        bool eth_submitWork(const std::string& param1, const std::string& param2, const std::string& param3) throw (jsonrpc::JsonRpcException)
+        bool mc_submitWork(const std::string& param1, const std::string& param2, const std::string& param3) throw (jsonrpc::JsonRpcException)
         {
             Json::Value p;
             p.append(param1);
             p.append(param2);
             p.append(param3);
-            Json::Value result = this->client->CallMethod("eth_submitWork",p);
+            Json::Value result = this->client->CallMethod("mc_submitWork",p);
             if (result.isBool())
                 return result.asBool();
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
-        bool eth_submitHashrate(const std::string& param1, const std::string& param2) throw (jsonrpc::JsonRpcException)
+        bool mc_submitHashrate(const std::string& param1, const std::string& param2) throw (jsonrpc::JsonRpcException)
         {
             Json::Value p;
             p.append(param1);
             p.append(param2);
-            Json::Value result = this->client->CallMethod("eth_submitHashrate",p);
+            Json::Value result = this->client->CallMethod("mc_submitHashrate",p);
             if (result.isBool())
                 return result.asBool();
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
-        Json::Value eth_awaitNewWork() throw (jsonrpc::JsonRpcException)
+        Json::Value mc_awaitNewWork() throw (jsonrpc::JsonRpcException)
         {
             Json::Value p;
             p = Json::nullValue;
-            Json::Value result = this->client->CallMethod("eth_awaitNewWork",p);
+            Json::Value result = this->client->CallMethod("mc_awaitNewWork",p);
             if (result.isArray())
                 return result;
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
-        bool eth_progress() throw (jsonrpc::JsonRpcException)
+        bool mc_progress() throw (jsonrpc::JsonRpcException)
         {
             Json::Value p;
             p = Json::nullValue;
-            Json::Value result = this->client->CallMethod("eth_progress",p);
+            Json::Value result = this->client->CallMethod("mc_progress",p);
             if (result.isBool())
                 return result.asBool();
             else
